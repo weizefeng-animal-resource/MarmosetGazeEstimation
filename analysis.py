@@ -213,7 +213,7 @@ class EstimateFacePosition:
         return rvec, tvec
 
 
-def estimate_gaze_point(accuracy_threshold=0.96, medfilt_kernel_size=7):
+def estimate_gaze_point(accuracy_threshold, medfilt_kernel_size=7):
     try:
         data_frame = pd.read_csv('face_model.csv', header=0, index_col=0)
         face_model = np.float32(data_frame).T
@@ -385,39 +385,46 @@ def to_rotation_matrix(rvec):
     return np.dot(np.dot(rotation_matrix_z, rotation_matrix_y), rotation_matrix_x)
 
 
-def main(task):
-    if task == 'createDirs':
+def main(args):
+    if args.task == 'createDirs':
         create_directories()
-    elif task == 'calCamera1':
+    elif args.task == 'calCamera1':
         camera_parameters = calibrate_camera('Camera1')
         with open('camera1.pickle', 'wb') as f:
             pickle.dump(camera_parameters, f)
         print('camera1 is calibrated successfully.')
-    elif task == 'calCamera2':
+    elif args.task == 'calCamera2':
         camera_parameters = calibrate_camera('Camera2')
         with open('camera2.pickle', 'wb') as f:
             pickle.dump(camera_parameters, f)
         print('camera2 is calibrated successfully.')
-    elif task == 'locateSetup':
+    elif args.task == 'locateSetup':
         setup = find_camera_and_monitor()
         with open('setup.pickle', 'wb') as f:
             pickle.dump(setup, f)
         print('camera1 and display are located successfully.')
-    elif task == 'estimateGazePoints':
-        estimate_gaze_point()
-    elif task == 'calEstimator':
+    elif args.task == 'estimateGazePoints':
+        if args.accuracy is None:
+            raise Exception('Threshold for accuracy of facial landmark detection is not specified.')
+        estimate_gaze_point(args.accuracy)
+    elif args.task == 'calEstimator':
         calibrator = calibrate_estimator()
         with open('calibrator.pickle', 'wb') as f:
             pickle.dump(calibrator, f)
         print('estimator is calibrated successfully.')
-    elif task == 'calResults':
+    elif args.task == 'calResults':
         calibrate_results()
+    elif args.task == 'createVideo':
+        pass
     else:
-        raise Exception('task name should be one of the follows: ')
+        raise Exception('task name should be one of the follows: createDirs calCamera1 calCamera2 locateSetup' + 
+                        ' estimateGazePoints calEstimator calResults createVideo')
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-t', '--task', type=str, required=True, help='Task name')
-    args = parser.parse_args()
-    main(args.task)
+    parser.add_argument('-a', '--accuracy', type=str, help='Accuracy threshold')
+    parser.add_argument('-v', '--video', type=str, help='Video name')
+    parser.add_argument('-d', '--deeplabcut-output', type=str, help='Deeplabcut output name')
+    main(parser.parse_args())
