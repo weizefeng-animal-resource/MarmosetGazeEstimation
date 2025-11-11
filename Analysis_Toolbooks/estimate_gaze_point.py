@@ -53,7 +53,7 @@ class EstimateFacePosition:
         return rvec, tvec
     
     
-def estimate_gaze_point(accuracy_threshold=0.96, medfilt_kernel_size=7):
+def estimate_gaze_points(accuracy_threshold=0.96, medfilt_kernel_size=7):
     try:
         data_frame = pd.read_csv('face_model.csv', header=0, index_col=0)
         face_model = np.float32(data_frame).T
