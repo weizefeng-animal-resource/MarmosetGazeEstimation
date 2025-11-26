@@ -28,8 +28,8 @@ def annotate_video(
             'Right corner of eye', 'Right corner of eye.1', 'Left corner of eye', 'Left corner of eye.1',
             'Mouth', 'Mouth.1', 'Right corner of mouth', 'Right corner of mouth.1',
             'Left corner of mouth', 'Left corner of mouth.1']][1:])
-        facial_landmark_coords[:, 0::2] = facial_landmark_coords[:, 0::2] + 460
-        facial_landmark_coords[:, 1::2] = facial_landmark_coords[:, 1::2] + 20
+        facial_landmark_coords[:, 0::2] = facial_landmark_coords[:, 0::2]
+        facial_landmark_coords[:, 1::2] = facial_landmark_coords[:, 1::2]
         facial_landmark_coords = np.int64(facial_landmark_coords)
         is_accurate = np.float32(data_frame[[
             'Amount.2', 'Nose.2', 'Right corner of eye.2', 'Left corner of eye.2',
