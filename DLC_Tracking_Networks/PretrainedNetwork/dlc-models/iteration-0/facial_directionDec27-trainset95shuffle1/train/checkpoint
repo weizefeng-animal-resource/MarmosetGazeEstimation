@@ -1,0 +1,6 @@
+model_checkpoint_path: "C:\\Users\\animal_lab\\Desktop\\facial_direction-harbers-2023-12-27\\dlc-models\\iteration-0\\facial_directionDec27-trainset95shuffle1\\train\\snapshot-500000"
+all_model_checkpoint_paths: "C:\\Users\\animal_lab\\Desktop\\facial_direction-harbers-2023-12-27\\dlc-models\\iteration-0\\facial_directionDec27-trainset95shuffle1\\train\\snapshot-100000"
+all_model_checkpoint_paths: "C:\\Users\\animal_lab\\Desktop\\facial_direction-harbers-2023-12-27\\dlc-models\\iteration-0\\facial_directionDec27-trainset95shuffle1\\train\\snapshot-200000"
+all_model_checkpoint_paths: "C:\\Users\\animal_lab\\Desktop\\facial_direction-harbers-2023-12-27\\dlc-models\\iteration-0\\facial_directionDec27-trainset95shuffle1\\train\\snapshot-300000"
+all_model_checkpoint_paths: "C:\\Users\\animal_lab\\Desktop\\facial_direction-harbers-2023-12-27\\dlc-models\\iteration-0\\facial_directionDec27-trainset95shuffle1\\train\\snapshot-400000"
+all_model_checkpoint_paths: "C:\\Users\\animal_lab\\Desktop\\facial_direction-harbers-2023-12-27\\dlc-models\\iteration-0\\facial_directionDec27-trainset95shuffle1\\train\\snapshot-500000"
